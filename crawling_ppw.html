@@ -1,0 +1,1622 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Tugas 1 Crawling Detik.com &#8212; PPW</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'crawling_ppw';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Tugas 2 Kata Unik Dataset" href="tugas2_kataunik.html" />
+    <link rel="prev" title="Welcome to Pencarian dan Penambangan Web" href="intro.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/fotosaya.jpg" class="logo__image only-light" alt="PPW - Home"/>
+    <script>document.write(`<img src="_static/fotosaya.jpg" class="logo__image only-dark" alt="PPW - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Welcome to Pencarian dan Penambangan Web
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Tugas 1 Crawling Detik.com</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tugas2_kataunik.html">Tugas 2 Kata Unik Dataset</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fcrawling_ppw.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/crawling_ppw.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Tugas 1 Crawling Detik.com</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="tugas-1-crawling-detik-com">
+<h1>Tugas 1 Crawling <a class="reference external" href="http://Detik.com">Detik.com</a><a class="headerlink" href="#tugas-1-crawling-detik-com" title="Permalink to this heading">#</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Jika belum install library, jalankan sekali saja</span>
+<span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>requests<span class="w"> </span>beautifulsoup4<span class="w"> </span>trafilatura<span class="w"> </span>pandas<span class="w"> </span>openpyxl<span class="w"> </span>tqdm
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: requests in /home/codespace/.local/lib/python3.14/site-packages (2.34.2)
+Requirement already satisfied: beautifulsoup4 in /home/codespace/.local/lib/python3.14/site-packages (4.15.0)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting trafilatura
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  Downloading trafilatura-2.2.0-py3-none-any.whl.metadata (13 kB)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting pandas
+  Downloading pandas-3.0.5-cp314-cp314-manylinux_2_24_x86_64.manylinux_2_28_x86_64.whl.metadata (79 kB)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting openpyxl
+  Downloading openpyxl-3.1.5-py2.py3-none-any.whl.metadata (2.5 kB)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting tqdm
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  Downloading tqdm-4.70.1-py3-none-any.whl.metadata (57 kB)
+Requirement already satisfied: charset_normalizer&lt;4,&gt;=2 in /home/codespace/.local/lib/python3.14/site-packages (from requests) (3.5.1)
+Requirement already satisfied: idna&lt;4,&gt;=2.5 in /home/codespace/.local/lib/python3.14/site-packages (from requests) (3.19)
+Requirement already satisfied: urllib3&lt;3,&gt;=1.26 in /home/codespace/.local/lib/python3.14/site-packages (from requests) (2.7.0)
+Requirement already satisfied: certifi&gt;=2023.5.7 in /home/codespace/.local/lib/python3.14/site-packages (from requests) (2026.7.22)
+Requirement already satisfied: soupsieve&gt;=1.6.1 in /home/codespace/.local/lib/python3.14/site-packages (from beautifulsoup4) (2.9.2)
+Requirement already satisfied: typing-extensions&gt;=4.0.0 in /home/codespace/.local/lib/python3.14/site-packages (from beautifulsoup4) (4.16.0)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting courlan&gt;=1.4.0 (from trafilatura)
+  Downloading courlan-1.4.0-py3-none-any.whl.metadata (18 kB)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting htmldate&gt;=1.10.0 (from trafilatura)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  Downloading htmldate-1.10.0-py3-none-any.whl.metadata (9.8 kB)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting justext&gt;=3.0.2 (from trafilatura)
+  Downloading justext-3.0.2-py2.py3-none-any.whl.metadata (7.3 kB)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting lxml&gt;=6.1.1 (from trafilatura)
+  Downloading lxml-6.1.3-cp314-cp314-manylinux_2_26_x86_64.manylinux_2_28_x86_64.whl.metadata (3.3 kB)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting numpy&gt;=2.3.3 (from pandas)
+  Downloading numpy-2.5.3-cp314-cp314-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl.metadata (6.6 kB)
+Requirement already satisfied: python-dateutil&gt;=2.8.2 in /home/codespace/.local/lib/python3.14/site-packages (from pandas) (2.9.0.post0)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting et-xmlfile (from openpyxl)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  Downloading et_xmlfile-2.0.0-py3-none-any.whl.metadata (2.7 kB)
+Requirement already satisfied: babel&gt;=2.16.0 in /home/codespace/.local/lib/python3.14/site-packages (from courlan&gt;=1.4.0-&gt;trafilatura) (2.18.0)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting tld&gt;=0.13 (from courlan&gt;=1.4.0-&gt;trafilatura)
+  Downloading tld-0.13.2-py2.py3-none-any.whl.metadata (11 kB)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting dateparser&gt;=1.1.2 (from htmldate&gt;=1.10.0-&gt;trafilatura)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  Downloading dateparser-1.4.3-py3-none-any.whl.metadata (25 kB)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting pytz&gt;=2024.2 (from dateparser&gt;=1.1.2-&gt;htmldate&gt;=1.10.0-&gt;trafilatura)
+  Downloading pytz-2026.3.post1-py2.py3-none-any.whl.metadata (22 kB)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting regex&gt;=2024.9.11 (from dateparser&gt;=1.1.2-&gt;htmldate&gt;=1.10.0-&gt;trafilatura)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  Downloading regex-2026.9.10-cp314-cp314-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (40 kB)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting tzlocal&gt;=0.2 (from dateparser&gt;=1.1.2-&gt;htmldate&gt;=1.10.0-&gt;trafilatura)
+  Downloading tzlocal-5.4.4-py3-none-any.whl.metadata (7.7 kB)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting lxml_html_clean (from lxml[html_clean]&gt;=4.4.2-&gt;justext&gt;=3.0.2-&gt;trafilatura)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  Downloading lxml_html_clean-0.4.5-py3-none-any.whl.metadata (2.4 kB)
+Requirement already satisfied: six&gt;=1.5 in /home/codespace/.local/lib/python3.14/site-packages (from python-dateutil&gt;=2.8.2-&gt;pandas) (1.17.0)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloading trafilatura-2.2.0-py3-none-any.whl (151 kB)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloading pandas-3.0.5-cp314-cp314-manylinux_2_24_x86_64.manylinux_2_28_x86_64.whl (11.0 MB)
+?25l   <span class=" -Color -Color-C237">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Green">0.0/11.0 MB</span> <span class=" -Color -Color-Red">?</span> eta <span class=" -Color -Color-Cyan">-:--:--</span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━<span class=" -Color -Color-C237">╺</span> <span class=" -Color -Color-Green">10.7/11.0 MB</span> <span class=" -Color -Color-Red">344.1 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   <span class=" -Color -Color-Red">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Green">11.0/11.0 MB</span> <span class=" -Color -Color-Red">44.8 MB/s</span>  <span class=" -Color -Color-Yellow">0:00:00</span>
+?25hDownloading openpyxl-3.1.5-py2.py3-none-any.whl (250 kB)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloading tqdm-4.70.1-py3-none-any.whl (80 kB)
+Downloading courlan-1.4.0-py3-none-any.whl (34 kB)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloading htmldate-1.10.0-py3-none-any.whl (31 kB)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloading dateparser-1.4.3-py3-none-any.whl (322 kB)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloading justext-3.0.2-py2.py3-none-any.whl (837 kB)
+?25l   <span class=" -Color -Color-C237">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Green">0.0/837.9 kB</span> <span class=" -Color -Color-Red">?</span> eta <span class=" -Color -Color-Cyan">-:--:--</span>
+   <span class=" -Color -Color-Red">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Green">837.9/837.9 kB</span> <span class=" -Color -Color-Red">24.0 MB/s</span>  <span class=" -Color -Color-Yellow">0:00:00</span>
+?25hDownloading lxml-6.1.3-cp314-cp314-manylinux_2_26_x86_64.manylinux_2_28_x86_64.whl (5.2 MB)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>?25l   <span class=" -Color -Color-C237">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Green">0.0/5.2 MB</span> <span class=" -Color -Color-Red">?</span> eta <span class=" -Color -Color-Cyan">-:--:--</span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   <span class=" -Color -Color-Red">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Green">5.2/5.2 MB</span> <span class=" -Color -Color-Red">27.8 MB/s</span>  <span class=" -Color -Color-Yellow">0:00:00</span>
+?25hDownloading numpy-2.5.3-cp314-cp314-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl (16.7 MB)
+?25l   <span class=" -Color -Color-C237">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Green">0.0/16.7 MB</span> <span class=" -Color -Color-Red">?</span> eta <span class=" -Color -Color-Cyan">-:--:--</span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╸ <span class=" -Color -Color-Green">16.5/16.7 MB</span> <span class=" -Color -Color-Red">275.0 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╸ <span class=" -Color -Color-Green">16.5/16.7 MB</span> <span class=" -Color -Color-Red">275.0 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
+   <span class=" -Color -Color-Red">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Green">16.7/16.7 MB</span> <span class=" -Color -Color-Red">39.7 MB/s</span>  <span class=" -Color -Color-Yellow">0:00:00</span>
+?25hDownloading pytz-2026.3.post1-py2.py3-none-any.whl (508 kB)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloading regex-2026.9.10-cp314-cp314-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (803 kB)
+?25l   <span class=" -Color -Color-C237">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Green">0.0/803.7 kB</span> <span class=" -Color -Color-Red">?</span> eta <span class=" -Color -Color-Cyan">-:--:--</span>
+   <span class=" -Color -Color-Red">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Green">803.7/803.7 kB</span> <span class=" -Color -Color-Red">28.7 MB/s</span>  <span class=" -Color -Color-Yellow">0:00:00</span>
+?25hDownloading tld-0.13.2-py2.py3-none-any.whl (296 kB)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloading tzlocal-5.4.4-py3-none-any.whl (18 kB)
+Downloading et_xmlfile-2.0.0-py3-none-any.whl (18 kB)
+Downloading lxml_html_clean-0.4.5-py3-none-any.whl (14 kB)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Installing collected packages: pytz, tzlocal, tqdm, tld, regex, numpy, lxml, et-xmlfile, pandas, openpyxl, lxml_html_clean, dateparser, courlan, htmldate, justext, trafilatura
+?25l
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━<span class=" -Color -Color-C237">╺━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Green"> 2/16</span> [tqdm]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━<span class=" -Color -Color-C237">╺━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Green"> 4/16</span> [regex]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━━━╸<span class=" -Color -Color-C237">━━━━━━━━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Green"> 5/16</span> [numpy]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━━━╸<span class=" -Color -Color-C237">━━━━━━━━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Green"> 5/16</span> [numpy]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━━━╸<span class=" -Color -Color-C237">━━━━━━━━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Green"> 5/16</span> [numpy]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━━━╸<span class=" -Color -Color-C237">━━━━━━━━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Green"> 5/16</span> [numpy]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━━━╸<span class=" -Color -Color-C237">━━━━━━━━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Green"> 5/16</span> [numpy]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━━━╸<span class=" -Color -Color-C237">━━━━━━━━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Green"> 5/16</span> [numpy]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━━━╸<span class=" -Color -Color-C237">━━━━━━━━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Green"> 5/16</span> [numpy]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━━━╸<span class=" -Color -Color-C237">━━━━━━━━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Green"> 5/16</span> [numpy]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━━━╸<span class=" -Color -Color-C237">━━━━━━━━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Green"> 5/16</span> [numpy]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━━━╸<span class=" -Color -Color-C237">━━━━━━━━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Green"> 5/16</span> [numpy]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━━━╸<span class=" -Color -Color-C237">━━━━━━━━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Green"> 5/16</span> [numpy]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━━━╸<span class=" -Color -Color-C237">━━━━━━━━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Green"> 5/16</span> [numpy]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━━━╸<span class=" -Color -Color-C237">━━━━━━━━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Green"> 5/16</span> [numpy]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━━━╸<span class=" -Color -Color-C237">━━━━━━━━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Green"> 5/16</span> [numpy]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━━━━━━<span class=" -Color -Color-C237">╺━━━━━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Green"> 6/16</span> [lxml]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━━━━━━<span class=" -Color -Color-C237">╺━━━━━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Green"> 6/16</span> [lxml]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━━━━━━━━━━━<span class=" -Color -Color-C237">╺━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Green"> 8/16</span> [pandas]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━━━━━━━━━━━<span class=" -Color -Color-C237">╺━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Green"> 8/16</span> [pandas]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━━━━━━━━━━━<span class=" -Color -Color-C237">╺━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Green"> 8/16</span> [pandas]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━━━━━━━━━━━<span class=" -Color -Color-C237">╺━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Green"> 8/16</span> [pandas]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━━━━━━━━━━━<span class=" -Color -Color-C237">╺━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Green"> 8/16</span> [pandas]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━━━━━━━━━━━<span class=" -Color -Color-C237">╺━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Green"> 8/16</span> [pandas]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━━━━━━━━━━━<span class=" -Color -Color-C237">╺━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Green"> 8/16</span> [pandas]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━━━━━━━━━━━<span class=" -Color -Color-C237">╺━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Green"> 8/16</span> [pandas]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━━━━━━━━━━━<span class=" -Color -Color-C237">╺━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Green"> 8/16</span> [pandas]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━━━━━━━━━━━<span class=" -Color -Color-C237">╺━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Green"> 8/16</span> [pandas]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━━━━━━━━━━━<span class=" -Color -Color-C237">╺━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Green"> 8/16</span> [pandas]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━━━━━━━━━━━<span class=" -Color -Color-C237">╺━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Green"> 8/16</span> [pandas]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━━━━━━━━━━━<span class=" -Color -Color-C237">╺━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Green"> 8/16</span> [pandas]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━━━━━━━━━━━<span class=" -Color -Color-C237">╺━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Green"> 8/16</span> [pandas]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━━━━━━━━━━━<span class=" -Color -Color-C237">╺━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Green"> 8/16</span> [pandas]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━━━━━━━━━━━<span class=" -Color -Color-C237">╺━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Green"> 8/16</span> [pandas]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━━━━━━━━━━━<span class=" -Color -Color-C237">╺━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Green"> 8/16</span> [pandas]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━━━━━━━━━━━<span class=" -Color -Color-C237">╺━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Green"> 8/16</span> [pandas]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━━━━━━━━━━━<span class=" -Color -Color-C237">╺━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Green"> 8/16</span> [pandas]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━━━━━━━━━━━<span class=" -Color -Color-C237">╺━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Green"> 8/16</span> [pandas]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━━━━━━━━━━━<span class=" -Color -Color-C237">╺━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Green"> 8/16</span> [pandas]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━━━━━━━━━━━<span class=" -Color -Color-C237">╺━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Green"> 8/16</span> [pandas]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━━━━━━━━━━━<span class=" -Color -Color-C237">╺━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Green"> 8/16</span> [pandas]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━━━━━━━━━━━<span class=" -Color -Color-C237">╺━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Green"> 8/16</span> [pandas]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━━━━━━━━━━━<span class=" -Color -Color-C237">╺━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Green"> 8/16</span> [pandas]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━━━━━━━━━━━<span class=" -Color -Color-C237">╺━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Green"> 8/16</span> [pandas]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━━━━━━━━━━━<span class=" -Color -Color-C237">╺━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Green"> 8/16</span> [pandas]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━━━━━━━━━━━<span class=" -Color -Color-C237">╺━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Green"> 8/16</span> [pandas]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━━━━━━━━━━━<span class=" -Color -Color-C237">╺━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Green"> 8/16</span> [pandas]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━━━━━━━━━━━<span class=" -Color -Color-C237">╺━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Green"> 8/16</span> [pandas]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━━━━━━━━━━━<span class=" -Color -Color-C237">╺━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Green"> 8/16</span> [pandas]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━━━━━━━━━━━<span class=" -Color -Color-C237">╺━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Green"> 8/16</span> [pandas]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━━━━━━━━━━━<span class=" -Color -Color-C237">╺━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Green"> 8/16</span> [pandas]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━━━━━━━━━━━<span class=" -Color -Color-C237">╺━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Green"> 8/16</span> [pandas]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━━━━━━━━━━━<span class=" -Color -Color-C237">╺━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Green"> 8/16</span> [pandas]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━━━━━━━━━━━<span class=" -Color -Color-C237">╺━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Green"> 8/16</span> [pandas]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━━━━━━━━━━━<span class=" -Color -Color-C237">╺━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Green"> 8/16</span> [pandas]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━━━━━━━━━━━<span class=" -Color -Color-C237">╺━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Green"> 8/16</span> [pandas]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━━━━━━━━━━━<span class=" -Color -Color-C237">╺━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Green"> 8/16</span> [pandas]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━━━━━━━━━━━━━╸<span class=" -Color -Color-C237">━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Green"> 9/16</span> [openpyxl]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━━━━━━━━━━━━━╸<span class=" -Color -Color-C237">━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Green"> 9/16</span> [openpyxl]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━━━━━━━━━━━━━━━━━━╸<span class=" -Color -Color-C237">━━━━━━━━━━━━</span> <span class=" -Color -Color-Green">11/16</span> [dateparser]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━━━━━━━━━━━━━━━━━━╸<span class=" -Color -Color-C237">━━━━━━━━━━━━</span> <span class=" -Color -Color-Green">11/16</span> [dateparser]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╸<span class=" -Color -Color-C237">━━━━━━━</span> <span class=" -Color -Color-Green">13/16</span> [htmldate]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╸<span class=" -Color -Color-C237">━━</span> <span class=" -Color -Color-Green">15/16</span> [trafilatura]
+   <span class=" -Color -Color-Red">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Green">16/16</span> [trafilatura]
+?25h
+Successfully installed courlan-1.4.0 dateparser-1.4.3 et-xmlfile-2.0.0 htmldate-1.10.0 justext-3.0.2 lxml-6.1.3 lxml_html_clean-0.4.5 numpy-2.5.3 openpyxl-3.1.5 pandas-3.0.5 pytz-2026.3.post1 regex-2026.9.10 tld-0.13.2 tqdm-4.70.1 trafilatura-2.2.0 tzlocal-5.4.4
+</pre></div>
+</div>
+</div>
+</div>
+<p>Kode tersebut digunakan untuk menginstal beberapa library Python yang dibutuhkan dalam proses crawling dan penambangan web. Perintah pip install digunakan untuk memasang library ke dalam environment Python yang sedang digunakan. Library requests berfungsi untuk mengirim permintaan ke website dan mengambil halaman web, sedangkan beautifulsoup4 digunakan untuk membaca struktur HTML dan mengambil elemen tertentu seperti judul, link, atau informasi lainnya. Library trafilatura digunakan untuk mengekstraksi isi utama artikel dari halaman web agar teks yang diperoleh lebih bersih. Selanjutnya, pandas digunakan untuk mengolah hasil crawling dalam bentuk tabel atau DataFrame, sementara openpyxl digunakan untuk membaca maupun menyimpan data dalam format Excel (.xlsx). Terakhir, tqdm digunakan untuk menampilkan progress bar sehingga proses crawling dalam jumlah banyak dapat dipantau. Perintah instalasi ini cukup dijalankan satu kali selama library tersebut sudah terpasang pada environment Python yang digunakan.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">re</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">random</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">requests</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">trafilatura</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">bs4</span><span class="w"> </span><span class="kn">import</span> <span class="n">BeautifulSoup</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">urllib.parse</span><span class="w"> </span><span class="kn">import</span> <span class="n">urljoin</span><span class="p">,</span> <span class="n">urlsplit</span><span class="p">,</span> <span class="n">urlunsplit</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">tqdm</span><span class="w"> </span><span class="kn">import</span> <span class="n">tqdm</span>
+
+
+<span class="c1"># ============================================================</span>
+<span class="c1"># 1. KONFIGURASI</span>
+<span class="c1"># ============================================================</span>
+
+<span class="n">HEADERS</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">"User-Agent"</span><span class="p">:</span> <span class="p">(</span>
+        <span class="s2">"Mozilla/5.0 (Windows NT 10.0; Win64; x64) "</span>
+        <span class="s2">"AppleWebKit/537.36 (KHTML, like Gecko) "</span>
+        <span class="s2">"Chrome/152.0 Safari/537.36"</span>
+    <span class="p">)</span>
+<span class="p">}</span>
+
+<span class="n">session</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">Session</span><span class="p">()</span>
+<span class="n">session</span><span class="o">.</span><span class="n">headers</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">HEADERS</span><span class="p">)</span>
+
+
+<span class="n">kategori</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">"sport"</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">"url"</span><span class="p">:</span> <span class="s2">"https://sport.detik.com/indeks"</span><span class="p">,</span>
+        <span class="s2">"domain"</span><span class="p">:</span> <span class="s2">"sport.detik.com"</span>
+    <span class="p">},</span>
+
+    <span class="s2">"finance"</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">"url"</span><span class="p">:</span> <span class="s2">"https://finance.detik.com/indeks"</span><span class="p">,</span>
+        <span class="s2">"domain"</span><span class="p">:</span> <span class="s2">"finance.detik.com"</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Kode tersebut merupakan bagian persiapan awal program crawling data dari website <a class="reference external" href="http://Detik.com">Detik.com</a>, khususnya untuk mengambil data dari kategori Sport dan Finance. Pertama, beberapa library diimpor sesuai kebutuhan, yaitu re untuk melakukan pencarian dan manipulasi pola teks, time dan random untuk mengatur jeda secara acak antarpermintaan agar proses crawling tidak dilakukan terlalu cepat, requests untuk mengakses halaman website, pandas untuk mengolah data hasil crawling, serta trafilatura untuk mengekstraksi isi utama artikel. Selain itu, BeautifulSoup digunakan untuk membaca dan mengolah struktur HTML, sedangkan urljoin, urlsplit, dan urlunsplit digunakan untuk mengolah, menggabungkan, dan menormalisasi URL. tqdm digunakan untuk menampilkan progress bar sehingga perkembangan proses crawling dapat dipantau.</p>
+<p>Bagian konfigurasi kemudian menentukan HEADERS yang berisi informasi User-Agent agar request dari program terlihat seperti berasal dari browser biasa. Selanjutnya, requests.Session() digunakan untuk membuat satu sesi koneksi yang dapat digunakan berulang kali selama proses crawling, kemudian session.headers.update(HEADERS) menerapkan User-Agent tersebut pada setiap request. Variabel kategori merupakan dictionary yang digunakan untuk menentukan sumber data yang akan di-crawl. Pada kategori sport, program akan mengambil data dari halaman indeks <a class="reference external" href="https://sport.detik.com/indeks">https://sport.detik.com/indeks</a> dengan domain <a class="reference external" href="http://sport.detik.com">sport.detik.com</a>, sedangkan kategori finance menggunakan halaman <a class="reference external" href="https://finance.detik.com/indeks">https://finance.detik.com/indeks</a> dengan domain <a class="reference external" href="http://finance.detik.com">finance.detik.com</a>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">normalize_url</span><span class="p">(</span><span class="n">url</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    Menghapus query parameter dan fragment dari URL.</span>
+<span class="sd">    """</span>
+
+    <span class="n">bagian</span> <span class="o">=</span> <span class="n">urlsplit</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+
+    <span class="n">url_bersih</span> <span class="o">=</span> <span class="n">urlunsplit</span><span class="p">(</span>
+        <span class="p">(</span>
+            <span class="n">bagian</span><span class="o">.</span><span class="n">scheme</span><span class="p">,</span>
+            <span class="n">bagian</span><span class="o">.</span><span class="n">netloc</span><span class="p">,</span>
+            <span class="n">bagian</span><span class="o">.</span><span class="n">path</span><span class="p">,</span>
+            <span class="s2">""</span><span class="p">,</span>
+            <span class="s2">""</span>
+        <span class="p">)</span>
+    <span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">url_bersih</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Fungsi normalize_url(url) digunakan untuk membersihkan URL sebelum diproses dalam crawling, terutama dengan menghapus query parameter dan fragment yang terdapat pada URL. Pertama, urlsplit(url) memecah URL menjadi beberapa bagian, yaitu skema (https), domain, path, query, dan fragment. Setelah itu, urlunsplit() menyusun kembali URL tersebut dengan mempertahankan bagian skema, domain, dan path, sementara bagian query dan fragment dikosongkan. Hasil akhirnya adalah URL yang lebih bersih dan seragam. Hal ini berguna dalam proses crawling karena satu halaman yang sama terkadang memiliki URL berbeda hanya karena adanya parameter tambahan seperti ?utm_source=… atau fragment seperti #komentar, sehingga pembersihan URL dapat membantu menghindari pengambilan halaman yang sama secara berulang.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">ambil_link_berita</span><span class="p">(</span><span class="n">index_url</span><span class="p">,</span> <span class="n">domain</span><span class="p">,</span> <span class="n">target</span><span class="o">=</span><span class="mi">150</span><span class="p">,</span> <span class="n">max_page</span><span class="o">=</span><span class="mi">20</span><span class="p">):</span>
+
+    <span class="n">links</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">sudah_ada</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+
+    <span class="k">for</span> <span class="n">page</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">max_page</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+
+        <span class="n">url_page</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">index_url</span><span class="si">}</span><span class="s2">?page=</span><span class="si">{</span><span class="n">page</span><span class="si">}</span><span class="s2">"</span>
+
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Membaca halaman </span><span class="si">{</span><span class="n">page</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+
+        <span class="k">try</span><span class="p">:</span>
+
+            <span class="n">response</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
+                <span class="n">url_page</span><span class="p">,</span>
+                <span class="n">timeout</span><span class="o">=</span><span class="mi">20</span>
+            <span class="p">)</span>
+
+            <span class="n">response</span><span class="o">.</span><span class="n">raise_for_status</span><span class="p">()</span>
+
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+
+            <span class="nb">print</span><span class="p">(</span><span class="s2">"Error:"</span><span class="p">,</span> <span class="n">e</span><span class="p">)</span>
+            <span class="k">continue</span>
+
+
+        <span class="n">soup</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span>
+            <span class="n">response</span><span class="o">.</span><span class="n">text</span><span class="p">,</span>
+            <span class="s2">"html.parser"</span>
+        <span class="p">)</span>
+
+
+        <span class="k">for</span> <span class="n">tag</span> <span class="ow">in</span> <span class="n">soup</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="s2">"a"</span><span class="p">,</span> <span class="n">href</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+
+            <span class="n">href</span> <span class="o">=</span> <span class="n">urljoin</span><span class="p">(</span>
+                <span class="n">url_page</span><span class="p">,</span>
+                <span class="n">tag</span><span class="p">[</span><span class="s2">"href"</span><span class="p">]</span>
+            <span class="p">)</span>
+
+            <span class="n">href</span> <span class="o">=</span> <span class="n">normalize_url</span><span class="p">(</span><span class="n">href</span><span class="p">)</span>
+
+            <span class="n">parsed</span> <span class="o">=</span> <span class="n">urlsplit</span><span class="p">(</span><span class="n">href</span><span class="p">)</span>
+
+
+            <span class="c1"># URL artikel Detik biasanya memiliki /d-xxxx</span>
+            <span class="k">if</span> <span class="p">(</span>
+                <span class="n">parsed</span><span class="o">.</span><span class="n">netloc</span> <span class="o">==</span> <span class="n">domain</span>
+                <span class="ow">and</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="sa">r</span><span class="s2">"/d-\d+"</span><span class="p">,</span> <span class="n">parsed</span><span class="o">.</span><span class="n">path</span><span class="p">)</span>
+            <span class="p">):</span>
+
+                <span class="k">if</span> <span class="n">href</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">sudah_ada</span><span class="p">:</span>
+
+                    <span class="n">sudah_ada</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">href</span><span class="p">)</span>
+
+                    <span class="n">links</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">href</span><span class="p">)</span>
+
+
+        <span class="nb">print</span><span class="p">(</span>
+            <span class="s2">"Jumlah link:"</span><span class="p">,</span>
+            <span class="nb">len</span><span class="p">(</span><span class="n">links</span><span class="p">)</span>
+        <span class="p">)</span>
+
+
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">links</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="n">target</span><span class="p">:</span>
+            <span class="k">break</span>
+
+
+        <span class="c1"># delay</span>
+        <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span>
+            <span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+        <span class="p">)</span>
+
+
+    <span class="k">return</span> <span class="n">links</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Fungsi ambil_link_berita() digunakan untuk mengambil dan mengumpulkan URL artikel berita dari halaman indeks <a class="reference external" href="http://Detik.com">Detik.com</a> secara otomatis hingga mencapai jumlah link yang ditentukan. Fungsi ini menerima index_url sebagai alamat halaman indeks, domain sebagai domain kategori berita, target sebagai jumlah link yang ingin dikumpulkan dengan nilai awal 150, serta max_page sebagai batas maksimal halaman yang akan dibaca yaitu 20 halaman. Program membuat list links untuk menyimpan URL artikel dan sudah_ada berupa set untuk memastikan URL yang sama tidak dikumpulkan berulang kali. Selanjutnya, program melakukan perulangan pada setiap halaman indeks dengan membentuk URL menggunakan ?page={page}, kemudian mengambil halaman tersebut menggunakan session.get() dengan batas waktu 20 detik. Jika terjadi kesalahan saat mengambil halaman, program menampilkan pesan error dan melanjutkan ke halaman berikutnya. Setelah halaman berhasil diperoleh, BeautifulSoup digunakan untuk membaca struktur HTML dan mencari seluruh tag a yang memiliki atribut href. Setiap link kemudian digabungkan dengan URL halaman menggunakan urljoin() dan dibersihkan menggunakan normalize_url(). URL tersebut kemudian diperiksa menggunakan urlsplit() untuk memastikan domainnya sesuai dengan kategori yang sedang diambil dan path URL mengandung pola /d-xxxx, yang merupakan pola URL artikel Detik. Jika URL belum pernah ditemukan, URL tersebut ditambahkan ke sudah_ada dan links. Setelah selesai membaca satu halaman, jumlah link yang telah diperoleh ditampilkan. Jika jumlah link sudah mencapai target, proses crawling dihentikan menggunakan break. Jika belum mencapai target, program memberikan jeda acak antara 1 hingga 2 detik menggunakan random.uniform() sebelum melanjutkan ke halaman berikutnya. Setelah proses selesai, fungsi mengembalikan seluruh URL artikel yang berhasil dikumpulkan melalui return links.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">link_sport</span> <span class="o">=</span> <span class="n">ambil_link_berita</span><span class="p">(</span>
+    <span class="n">kategori</span><span class="p">[</span><span class="s2">"sport"</span><span class="p">][</span><span class="s2">"url"</span><span class="p">],</span>
+    <span class="n">kategori</span><span class="p">[</span><span class="s2">"sport"</span><span class="p">][</span><span class="s2">"domain"</span><span class="p">],</span>
+    <span class="n">target</span><span class="o">=</span><span class="mi">150</span>
+<span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span>
+    <span class="s2">"Total kandidat Sport:"</span><span class="p">,</span>
+    <span class="nb">len</span><span class="p">(</span><span class="n">link_sport</span><span class="p">)</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Membaca halaman 1
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Jumlah link: 19
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Membaca halaman 2
+Jumlah link: 39
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Membaca halaman 3
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Jumlah link: 57
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Membaca halaman 4
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Jumlah link: 77
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Membaca halaman 5
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Jumlah link: 97
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Membaca halaman 6
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Jumlah link: 117
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Membaca halaman 7
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Jumlah link: 137
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Membaca halaman 8
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Jumlah link: 157
+Total kandidat Sport: 157
+</pre></div>
+</div>
+</div>
+</div>
+<p>Kode tersebut digunakan untuk memanggil fungsi ambil_link_berita() khusus untuk mengambil link berita dari kategori Sport <a class="reference external" href="http://Detik.com">Detik.com</a>. Pada bagian kategori[“sport”][“url”], program mengambil URL halaman indeks Sport yang sebelumnya sudah ditentukan, yaitu <a class="reference external" href="https://sport.detik.com/indeks">https://sport.detik.com/indeks</a>, sedangkan kategori[“sport”][“domain”] digunakan untuk menentukan domain yang harus sesuai, yaitu <a class="reference external" href="http://sport.detik.com">sport.detik.com</a>. Parameter target=150 menunjukkan bahwa program akan berusaha mengumpulkan 150 link artikel Sport. Hasil proses crawling kemudian disimpan ke dalam variabel link_sport. Setelah itu, print(“Total kandidat Sport:”, len(link_sport)) digunakan untuk menampilkan jumlah link berita Sport yang berhasil dikumpulkan. Jadi, secara sederhana, kode ini memulai proses pengambilan maksimal 150 kandidat link berita Sport dan menampilkan jumlah link yang berhasil diperoleh.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">link_finance</span> <span class="o">=</span> <span class="n">ambil_link_berita</span><span class="p">(</span>
+    <span class="n">kategori</span><span class="p">[</span><span class="s2">"finance"</span><span class="p">][</span><span class="s2">"url"</span><span class="p">],</span>
+    <span class="n">kategori</span><span class="p">[</span><span class="s2">"finance"</span><span class="p">][</span><span class="s2">"domain"</span><span class="p">],</span>
+    <span class="n">target</span><span class="o">=</span><span class="mi">150</span>
+<span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span>
+    <span class="s2">"Total kandidat Finance:"</span><span class="p">,</span>
+    <span class="nb">len</span><span class="p">(</span><span class="n">link_finance</span><span class="p">)</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Membaca halaman 1
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Jumlah link: 19
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Membaca halaman 2
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Jumlah link: 36
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Membaca halaman 3
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Jumlah link: 55
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Membaca halaman 4
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Jumlah link: 75
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Membaca halaman 5
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Jumlah link: 93
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Membaca halaman 6
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Jumlah link: 108
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Membaca halaman 7
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Jumlah link: 126
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Membaca halaman 8
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Jumlah link: 146
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Membaca halaman 9
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Jumlah link: 166
+Total kandidat Finance: 166
+</pre></div>
+</div>
+</div>
+</div>
+<p>Kode tersebut digunakan untuk memulai proses pengambilan link berita dari kategori Finance <a class="reference external" href="http://Detik.com">Detik.com</a>. Fungsi ambil_link_berita() dipanggil dengan menggunakan URL indeks dan domain Finance yang sebelumnya telah disimpan dalam dictionary kategori. Parameter target=150 menunjukkan bahwa program akan berusaha mengumpulkan 150 link artikel berita Finance. Hasil crawling kemudian disimpan ke dalam variabel link_finance. Setelah proses selesai, print(“Total kandidat Finance:”, len(link_finance)) digunakan untuk menampilkan jumlah link berita Finance yang berhasil diperoleh. Jadi, kode ini memiliki fungsi yang sama dengan kode sebelumnya untuk kategori Sport, tetapi sumber data yang digunakan adalah kategori Finance, sehingga program akan menghasilkan daftar kandidat link berita Finance untuk tahap crawling berikutnya.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">bersihkan_teks</span><span class="p">(</span><span class="n">teks</span><span class="p">):</span>
+
+    <span class="k">if</span> <span class="n">teks</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">None</span>
+
+
+    <span class="c1"># menghapus teks iklan</span>
+    <span class="n">teks</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span>
+        <span class="sa">r</span><span class="s2">"ADVERTISEMENT"</span><span class="p">,</span>
+        <span class="s2">" "</span><span class="p">,</span>
+        <span class="n">teks</span><span class="p">,</span>
+        <span class="n">flags</span><span class="o">=</span><span class="n">re</span><span class="o">.</span><span class="n">IGNORECASE</span>
+    <span class="p">)</span>
+
+
+    <span class="n">teks</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span>
+        <span class="sa">r</span><span class="s2">"SCROLL TO CONTINUE WITH CONTENT"</span><span class="p">,</span>
+        <span class="s2">" "</span><span class="p">,</span>
+        <span class="n">teks</span><span class="p">,</span>
+        <span class="n">flags</span><span class="o">=</span><span class="n">re</span><span class="o">.</span><span class="n">IGNORECASE</span>
+    <span class="p">)</span>
+
+
+    <span class="c1"># menghapus spasi berlebihan</span>
+    <span class="n">teks</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span>
+        <span class="sa">r</span><span class="s2">"\s+"</span><span class="p">,</span>
+        <span class="s2">" "</span><span class="p">,</span>
+        <span class="n">teks</span>
+    <span class="p">)</span>
+
+
+    <span class="k">return</span> <span class="n">teks</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Fungsi bersihkan_teks(teks) digunakan untuk membersihkan teks hasil crawling dari bagian-bagian yang tidak diperlukan sebelum data digunakan untuk analisis. Pertama, program memeriksa apakah variabel teks bernilai None; jika iya, fungsi langsung mengembalikan None karena tidak ada teks yang dapat diproses. Selanjutnya, re.sub() digunakan untuk menghapus teks “ADVERTISEMENT” dan “SCROLL TO CONTINUE WITH CONTENT” yang biasanya muncul sebagai bagian dari iklan atau elemen halaman website, dengan re.IGNORECASE agar proses tetap bekerja meskipun penulisannya menggunakan huruf besar atau kecil. Setelah itu, pola \s+ digunakan untuk mengubah spasi, tab, atau baris baru yang berlebihan menjadi satu spasi sehingga teks menjadi lebih rapi. Terakhir, strip() digunakan untuk menghapus spasi yang terdapat di awal dan akhir teks. Dengan demikian, fungsi ini menghasilkan teks artikel yang lebih bersih, rapi, dan siap digunakan untuk tahap pengolahan atau analisis selanjutnya.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">ambil_isi_berita</span><span class="p">(</span><span class="n">url</span><span class="p">):</span>
+
+    <span class="k">try</span><span class="p">:</span>
+
+        <span class="n">response</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
+            <span class="n">url</span><span class="p">,</span>
+            <span class="n">timeout</span><span class="o">=</span><span class="mi">25</span>
+        <span class="p">)</span>
+
+        <span class="n">response</span><span class="o">.</span><span class="n">raise_for_status</span><span class="p">()</span>
+
+
+        <span class="n">isi</span> <span class="o">=</span> <span class="n">trafilatura</span><span class="o">.</span><span class="n">extract</span><span class="p">(</span>
+            <span class="n">response</span><span class="o">.</span><span class="n">text</span><span class="p">,</span>
+            <span class="n">include_comments</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+            <span class="n">include_tables</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+            <span class="n">output_format</span><span class="o">=</span><span class="s2">"txt"</span><span class="p">,</span>
+            <span class="n">favor_precision</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+            <span class="n">deduplicate</span><span class="o">=</span><span class="kc">True</span>
+        <span class="p">)</span>
+
+
+        <span class="n">isi</span> <span class="o">=</span> <span class="n">bersihkan_teks</span><span class="p">(</span><span class="n">isi</span><span class="p">)</span>
+
+
+        <span class="c1"># menghindari halaman kosong</span>
+        <span class="c1"># atau isi yang terlalu pendek</span>
+        <span class="k">if</span> <span class="n">isi</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">isi</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">300</span><span class="p">:</span>
+
+            <span class="k">return</span> <span class="n">isi</span>
+
+
+    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+
+        <span class="nb">print</span><span class="p">(</span>
+            <span class="s2">"Gagal:"</span><span class="p">,</span>
+            <span class="n">url</span>
+        <span class="p">)</span>
+
+        <span class="nb">print</span><span class="p">(</span>
+            <span class="s2">"Error:"</span><span class="p">,</span>
+            <span class="n">e</span>
+        <span class="p">)</span>
+
+
+    <span class="k">return</span> <span class="kc">None</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Fungsi ambil_isi_berita(url) digunakan untuk mengambil dan mengekstraksi isi utama dari sebuah halaman berita berdasarkan URL yang telah diperoleh sebelumnya. Pertama, fungsi menggunakan session.get() untuk mengakses halaman berita dengan batas waktu 25 detik, kemudian raise_for_status() digunakan untuk memastikan request berhasil dan akan menghasilkan error jika terjadi masalah pada respons. Setelah halaman berhasil diambil, trafilatura.extract() digunakan untuk mengekstraksi teks utama artikel dari HTML. Beberapa pengaturan diterapkan, yaitu include_comments=False untuk mengabaikan komentar, include_tables=False untuk tidak mengambil isi tabel, output_format=”txt” untuk menghasilkan teks biasa, favor_precision=True untuk mengutamakan ketepatan dalam mengambil isi artikel, dan deduplicate=True untuk menghindari teks yang sama muncul berulang kali. Hasil ekstraksi kemudian diproses menggunakan fungsi bersihkan_teks() agar teks iklan, spasi berlebihan, dan bagian yang tidak diperlukan dapat dihapus. Selanjutnya, program memeriksa apakah teks tersedia dan memiliki panjang minimal 300 karakter. Pemeriksaan ini bertujuan untuk menghindari penyimpanan halaman yang kosong atau isi yang terlalu pendek dan tidak layak dianggap sebagai artikel. Jika memenuhi syarat, isi artikel dikembalikan melalui return isi. Namun, jika terjadi kesalahan selama proses pengambilan atau ekstraksi, program menampilkan URL dan pesan error, kemudian mengembalikan None. Dengan demikian, fungsi ini berperan dalam mengambil, mengekstraksi, membersihkan, dan memvalidasi isi berita sebelum digunakan sebagai data hasil crawling.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">scraping_kategori</span><span class="p">(</span>
+    <span class="n">links</span><span class="p">,</span>
+    <span class="n">label</span><span class="p">,</span>
+    <span class="n">target</span><span class="o">=</span><span class="mi">100</span>
+<span class="p">):</span>
+
+    <span class="n">hasil</span> <span class="o">=</span> <span class="p">[]</span>
+
+
+    <span class="k">for</span> <span class="n">url</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span>
+        <span class="n">links</span><span class="p">,</span>
+        <span class="n">desc</span><span class="o">=</span><span class="sa">f</span><span class="s2">"Scraping </span><span class="si">{</span><span class="n">label</span><span class="si">}</span><span class="s2">"</span>
+    <span class="p">):</span>
+
+
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">hasil</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="n">target</span><span class="p">:</span>
+            <span class="k">break</span>
+
+
+        <span class="n">isi</span> <span class="o">=</span> <span class="n">ambil_isi_berita</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+
+
+        <span class="k">if</span> <span class="n">isi</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+
+            <span class="n">hasil</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+                <span class="p">{</span>
+                    <span class="s2">"isi_berita"</span><span class="p">:</span> <span class="n">isi</span><span class="p">,</span>
+                    <span class="s2">"label"</span><span class="p">:</span> <span class="n">label</span>
+                <span class="p">}</span>
+            <span class="p">)</span>
+
+
+        <span class="c1"># delay supaya tidak terlalu cepat</span>
+        <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span>
+            <span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+        <span class="p">)</span>
+
+
+    <span class="nb">print</span><span class="p">(</span>
+        <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">label</span><span class="si">}</span><span class="s2"> berhasil:"</span><span class="p">,</span>
+        <span class="nb">len</span><span class="p">(</span><span class="n">hasil</span><span class="p">)</span>
+    <span class="p">)</span>
+
+
+    <span class="k">return</span> <span class="n">hasil</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Fungsi scraping_kategori() digunakan untuk melakukan proses scraping isi berita dari sekumpulan link berdasarkan kategori tertentu sampai mencapai jumlah data yang ditargetkan. Fungsi ini menerima links sebagai daftar URL berita yang akan diproses, label sebagai penanda kategori berita, dan target=100 sebagai jumlah artikel yang ingin dikumpulkan. Program membuat list hasil untuk menyimpan artikel yang berhasil diambil. Selanjutnya, setiap URL diproses menggunakan perulangan for dan tqdm untuk menampilkan progress scraping sesuai dengan label kategori. Sebelum mengambil artikel, program memeriksa jumlah data yang sudah berhasil dikumpulkan; jika sudah mencapai target, proses dihentikan menggunakan break. Setiap URL kemudian dikirim ke fungsi ambil_isi_berita() untuk mengambil dan membersihkan isi artikel. Jika isi berita berhasil diperoleh dan tidak bernilai None, data tersebut dimasukkan ke dalam list hasil dalam bentuk dictionary yang terdiri dari isi_berita sebagai isi artikel dan label sebagai kategori berita. Setelah setiap proses pengambilan artikel, program memberikan jeda acak antara 1 hingga 2 detik menggunakan random.uniform() agar request tidak dikirim terlalu cepat secara berturut-turut. Setelah seluruh proses selesai atau target tercapai, program menampilkan jumlah artikel yang berhasil dikumpulkan dan mengembalikan list hasil. Dengan demikian, fungsi ini digunakan untuk mengubah sekumpulan kandidat URL menjadi dataset berita yang sudah berisi teks artikel dan label kategorinya.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data_sport</span> <span class="o">=</span> <span class="n">scraping_kategori</span><span class="p">(</span>
+    <span class="n">link_sport</span><span class="p">,</span>
+    <span class="s2">"sport"</span><span class="p">,</span>
+    <span class="n">target</span><span class="o">=</span><span class="mi">100</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Scraping sport:   0%|                                                                           | 0/157 [00:00&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Scraping sport:   1%|▍                                                                  | 1/157 [00:01&lt;03:49,  1.47s/it]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Scraping sport:   1%|▊                                                                  | 2/157 [00:03&lt;04:14,  1.64s/it]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Scraping sport:   2%|█▎                                                                 | 3/157 [00:04&lt;03:42,  1.44s/it]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Scraping sport:   3%|█▋                                                                 | 4/157 [00:06&lt;04:08,  1.63s/it]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Scraping sport:   3%|██▏                                                                | 5/157 [00:07&lt;03:59,  1.58s/it]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Scraping sport:   4%|██▌                                                                | 6/157 [00:09&lt;04:00,  1.59s/it]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Scraping sport:   4%|██▉                                                                | 7/157 [00:11&lt;04:16,  1.71s/it]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Scraping sport:   5%|███▍                                                               | 8/157 [00:13&lt;04:11,  1.69s/it]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Scraping sport:   6%|███▊                                                               | 9/157 [00:14&lt;04:04,  1.65s/it]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Scraping sport:   6%|████▏                                                             | 10/157 [00:16&lt;04:17,  1.75s/it]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Scraping sport:   7%|████▌                                                             | 11/157 [00:18&lt;04:17,  1.77s/it]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Scraping sport:   8%|█████                                                             | 12/157 [00:20&lt;04:25,  1.83s/it]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Scraping sport:   8%|█████▍                                                            | 13/157 [00:22&lt;04:34,  1.90s/it]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Scraping sport:   9%|█████▉                                                            | 14/157 [00:24&lt;04:28,  1.88s/it]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Scraping sport:  10%|██████▎                                                           | 15/157 [00:25&lt;04:18,  1.82s/it]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Scraping sport:  10%|██████▋                                                           | 16/157 [00:27&lt;04:15,  1.81s/it]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Scraping sport:  11%|███████▏                                                          | 17/157 [00:29&lt;04:20,  1.86s/it]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Scraping sport:  11%|███████▏                                                          | 17/157 [00:29&lt;04:06,  1.76s/it]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">KeyboardInterrupt</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">10</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">data_sport</span> <span class="o">=</span> <span class="n">scraping_kategori</span><span class="p">(</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span>     <span class="n">link_sport</span><span class="p">,</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span>     <span class="s2">"sport"</span><span class="p">,</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span>     <span class="n">target</span><span class="o">=</span><span class="mi">100</span>
+
+<span class="nn">Cell In[9], line 34,</span> in <span class="ni">scraping_kategori</span><span class="nt">(links, label, target)</span>
+<span class="g g-Whitespace">     </span><span class="mi">30</span>             <span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">31</span> 
+<span class="g g-Whitespace">     </span><span class="mi">32</span> 
+<span class="g g-Whitespace">     </span><span class="mi">33</span>         <span class="c1"># delay supaya tidak terlalu cepat</span>
+<span class="ne">---&gt; </span><span class="mi">34</span>         <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span>
+<span class="g g-Whitespace">     </span><span class="mi">35</span>             <span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">36</span>         <span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">37</span> 
+
+<span class="ne">KeyboardInterrupt</span>: 
+</pre></div>
+</div>
+</div>
+</div>
+<p>Kode tersebut digunakan untuk menjalankan proses scraping terhadap link berita kategori Sport yang sebelumnya telah dikumpulkan. Fungsi scraping_kategori() dipanggil dengan link_sport sebagai daftar URL berita Sport, “sport” sebagai label kategori, dan target=100 untuk menentukan bahwa program hanya akan mengambil 100 artikel Sport yang berhasil diekstraksi. Hasil scraping kemudian disimpan dalam variabel data_sport. Setiap data yang berhasil dikumpulkan akan berisi isi berita dan label “sport”, sehingga data_sport nantinya menjadi kumpulan data berita Sport yang siap digabungkan dengan kategori lainnya untuk membentuk dataset.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data_finance</span> <span class="o">=</span> <span class="n">scraping_kategori</span><span class="p">(</span>
+    <span class="n">link_finance</span><span class="p">,</span>
+    <span class="s2">"finance"</span><span class="p">,</span>
+    <span class="n">target</span><span class="o">=</span><span class="mi">100</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Scraping finance:  68%|██████▊   | 105/154 [03:42&lt;01:43,  2.12s/it]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>finance berhasil: 100
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Kode tersebut digunakan untuk menjalankan proses scraping terhadap link berita kategori Finance yang sebelumnya telah dikumpulkan. Fungsi scraping_kategori() dipanggil dengan link_finance sebagai daftar URL berita Finance, “finance” sebagai label kategori, dan target=100 untuk menentukan bahwa program akan mengambil 100 artikel Finance yang berhasil diekstraksi. Hasil scraping kemudian disimpan dalam variabel data_finance. Setiap data yang berhasil dikumpulkan akan memiliki isi berita dan label “finance”, sehingga data_finance nantinya dapat digabungkan dengan data_sport untuk membentuk dataset berita dari kedua kategori.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data_semua</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">data_sport</span>
+    <span class="o">+</span>
+    <span class="n">data_finance</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Kode tersebut digunakan untuk menggabungkan data berita dari kategori Sport dan Finance menjadi satu dataset. Variabel data_sport berisi hasil scraping 100 berita kategori Sport, sedangkan data_finance berisi hasil scraping 100 berita kategori Finance. Operator + digunakan untuk menggabungkan kedua list tersebut, sehingga seluruh data disimpan dalam variabel data_semua. Dengan demikian, jika masing-masing kategori berhasil memperoleh 100 artikel, maka data_semua akan berisi 200 data berita, yaitu 100 berita Sport dan 100 berita Finance, yang masing-masing sudah memiliki isi berita dan label kategorinya.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+    <span class="n">data_semua</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Kode tersebut digunakan untuk mengubah seluruh data berita yang tersimpan dalam data_semua menjadi sebuah DataFrame menggunakan library Pandas. Fungsi pd.DataFrame() akan menyusun data yang sebelumnya berbentuk list of dictionary menjadi tabel, sehingga lebih mudah untuk dilihat, diolah, dibersihkan, maupun disimpan ke dalam file. Hasilnya disimpan dalam variabel df, yang menjadi dataset utama hasil crawling. Jika sebelumnya berhasil diperoleh 100 berita Sport dan 100 berita Finance, maka df akan berisi sekitar 200 baris data, dengan kolom seperti isi_berita dan label.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span>
+    <span class="mi">0</span><span class="p">,</span>
+    <span class="s2">"id"</span><span class="p">,</span>
+    <span class="nb">range</span><span class="p">(</span>
+        <span class="mi">1</span><span class="p">,</span>
+        <span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
+    <span class="p">)</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Kode tersebut digunakan untuk menambahkan kolom id sebagai identitas atau nomor urut pada setiap data berita di DataFrame df. Fungsi df.insert() digunakan untuk menyisipkan kolom baru pada posisi tertentu. Angka 0 menunjukkan bahwa kolom id akan ditempatkan sebagai kolom pertama. Kemudian “id” merupakan nama kolom yang ditambahkan, sedangkan range(1, len(df) + 1) menghasilkan nomor urut yang dimulai dari 1 sampai jumlah seluruh baris pada DataFrame. Jadi, jika df memiliki 200 data berita, kolom id akan berisi angka 1 hingga 200. Penambahan ID ini memudahkan proses identifikasi, pengelolaan, dan pengecekan setiap data berita dalam dataset.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span>
+    <span class="p">[</span>
+        <span class="s2">"id"</span><span class="p">,</span>
+        <span class="s2">"isi_berita"</span><span class="p">,</span>
+        <span class="s2">"label"</span>
+    <span class="p">]</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Kode tersebut digunakan untuk memilih dan mengatur urutan kolom yang akan digunakan dalam DataFrame df. DataFrame kemudian hanya mempertahankan tiga kolom, yaitu id, isi_berita, dan label. Kolom id berisi nomor identitas setiap berita, isi_berita berisi teks atau isi artikel yang telah diperoleh dari proses scraping, sedangkan label menunjukkan kategori berita, yaitu sport atau finance. Dengan penulisan df = df[[…]], DataFrame lama diperbarui sehingga hanya tiga kolom tersebut yang dipertahankan dan disusun dengan urutan id, isi_berita, kemudian label. Ini membuat struktur dataset menjadi lebih sederhana dan sesuai dengan kebutuhan analisis selanjutnya.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>id</th>
+      <th>isi_berita</th>
+      <th>label</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>Pacuan kuda Indonesia mulai diarahkan menuju p...</td>
+      <td>sport</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2</td>
+      <td>Jelang Asian Games 2026, dukungan untuk 432 at...</td>
+      <td>sport</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>3</td>
+      <td>Nova Widianto mulai menangani tim ganda campur...</td>
+      <td>sport</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>4</td>
+      <td>Timnas basket putra Indonesia jadi rombongan p...</td>
+      <td>sport</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>5</td>
+      <td>Bagi pelari urban, lari kini bukan lagi sekada...</td>
+      <td>sport</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>195</th>
+      <td>196</td>
+      <td>Menteri Pertanian (Mentan), Andi Amran Sulaima...</td>
+      <td>finance</td>
+    </tr>
+    <tr>
+      <th>196</th>
+      <td>197</td>
+      <td>Menteri Keuangan (Menkeu) Purbaya Yudhi mengaj...</td>
+      <td>finance</td>
+    </tr>
+    <tr>
+      <th>197</th>
+      <td>198</td>
+      <td>Masyarakat Indonesia semakin banyak yang mengg...</td>
+      <td>finance</td>
+    </tr>
+    <tr>
+      <th>198</th>
+      <td>199</td>
+      <td>Presiden Prabowo Subianto meminta semua pihak ...</td>
+      <td>finance</td>
+    </tr>
+    <tr>
+      <th>199</th>
+      <td>200</td>
+      <td>Otoritas Jasa Keuangan (OJK) mencatatkan kiner...</td>
+      <td>finance</td>
+    </tr>
+  </tbody>
+</table>
+<p>200 rows × 3 columns</p>
+</div></div></div>
+</div>
+<p>Kode tersebut digunakan untuk menampilkan isi DataFrame df di Jupyter Notebook. Setelah kode sebelumnya, df berisi tiga kolom utama, yaitu id, isi_berita, dan label. Dengan menjalankan df, Jupyter Notebook akan menampilkan data hasil crawling dalam bentuk tabel sehingga kita bisa melihat, memeriksa, dan memastikan hasil scraping sudah tersimpan dengan benar. Jika target scraping terpenuhi, tabel tersebut akan berisi sekitar 200 baris, terdiri dari 100 berita Sport dan 100 berita Finance.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span>
+    <span class="s2">"Total data:"</span><span class="p">,</span>
+    <span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Total data: 200
+</pre></div>
+</div>
+</div>
+</div>
+<p>Kode tersebut digunakan untuk menampilkan jumlah keseluruhan data yang terdapat dalam DataFrame df. Fungsi len(df) menghitung jumlah baris pada DataFrame, kemudian hasilnya ditampilkan menggunakan print() dengan keterangan “Total data:”. Jadi, kode ini berfungsi untuk memastikan berapa banyak berita yang berhasil dikumpulkan dari proses crawling. Jika scraping berhasil mendapatkan 100 berita Sport dan 100 berita Finance, maka hasilnya akan menampilkan Total data: 200.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span>
+    <span class="n">df</span><span class="p">[</span><span class="s2">"label"</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>label
+sport      100
+finance    100
+Name: count, dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<p>Kode tersebut digunakan untuk menghitung jumlah data pada setiap kategori berita yang terdapat dalam kolom label pada DataFrame df. df[“label”] digunakan untuk mengambil kolom label, kemudian value_counts() menghitung berapa kali setiap kategori muncul. Hasilnya ditampilkan menggunakan print(). Dalam dataset ini, kode tersebut digunakan untuk memastikan keseimbangan jumlah data antara kategori Sport dan Finance.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nama_file</span> <span class="o">=</span> <span class="s2">"dataset_detik_200_berita.xlsx"</span>
+
+
+<span class="n">df</span><span class="o">.</span><span class="n">to_excel</span><span class="p">(</span>
+    <span class="n">nama_file</span><span class="p">,</span>
+    <span class="n">index</span><span class="o">=</span><span class="kc">False</span>
+<span class="p">)</span>
+
+
+<span class="nb">print</span><span class="p">(</span>
+    <span class="s2">"File berhasil disimpan:"</span><span class="p">,</span>
+    <span class="n">nama_file</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>File berhasil disimpan: dataset_detik_200_berita.xlsx
+</pre></div>
+</div>
+</div>
+</div>
+<p>Kode tersebut digunakan untuk menyimpan DataFrame df ke dalam file Excel agar hasil crawling dapat digunakan atau dianalisis kembali. Variabel nama_file menentukan nama file yang akan dibuat, yaitu dataset_detik_200_berita.xlsx. Selanjutnya, df.to_excel() digunakan untuk mengubah DataFrame menjadi file Excel, sedangkan index=False digunakan agar nomor indeks bawaan DataFrame tidak ikut disimpan sebagai kolom tambahan. Setelah proses penyimpanan selesai, print() menampilkan pesan bahwa file telah berhasil disimpan beserta nama filenya. Jadi, kode ini berfungsi untuk menyimpan dataset hasil crawling yang berisi sekitar 200 berita Sport dan Finance ke dalam format Excel.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="s2">"dataset_detik_200_berita.xlsx"</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\ASUS\PPW\dataset_detik_200_berita.xlsx
+</pre></div>
+</div>
+</div>
+</div>
+<p>Kode tersebut digunakan untuk mengetahui lokasi atau path lengkap tempat file Excel dataset_detik_200_berita.xlsx disimpan. Library os diimpor untuk menyediakan fungsi-fungsi yang berkaitan dengan sistem operasi. Kemudian os.path.abspath() mengubah nama file relatif menjadi alamat atau lokasi file secara lengkap berdasarkan folder kerja Python saat ini. Hasilnya ditampilkan menggunakan print(), sehingga kita dapat mengetahui secara pasti di folder mana file dataset hasil crawling tersimpan. Dengan demikian, kode ini berguna untuk mengecek lokasi file Excel setelah proses penyimpanan selesai, terutama jika kita ingin membuka atau memindahkan file tersebut.</p>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "nwebmining"
+        },
+        kernelOptions: {
+            name: "nwebmining",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'nwebmining'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="intro.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Welcome to Pencarian dan Penambangan Web</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="tugas2_kataunik.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Tugas 2 Kata Unik Dataset</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Herly Nabila
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
